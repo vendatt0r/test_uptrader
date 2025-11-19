@@ -1,0 +1,6 @@
+{# Корневой список #}
+<ul class="tree-menu">
+  {% for item in tree %}
+    {% include "tree_menu/menu_item.html" with item=item %}
+  {% endfor %}
+</ul>
