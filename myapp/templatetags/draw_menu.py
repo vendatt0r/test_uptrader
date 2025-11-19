@@ -17,7 +17,7 @@ def draw_menu(context, menu_name, template_name="tree_menu/menu.html"):
     items = list(
         MenuItem.objects.filter(menu__name=menu_name)
         .select_related("parent")
-        .only("id", "parent_id", "title", "url", "named_url", "order")  # оптимизация
+        .only("id", "parent_id", "title", "url", "named_url", "order")
     )
 
     if not items:
