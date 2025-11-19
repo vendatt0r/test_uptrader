@@ -15,14 +15,12 @@ class MenuItem(models.Model):
         "self", on_delete=models.CASCADE, null=True, blank=True, related_name="children"
     )
     title = models.CharField(max_length=200)
-    # один из двух: либо явно указанный URL, либо имя named-url (без args)
-    url = models.CharField(max_length=500, blank=True, help_text="явный URL (например /about/)")
+    url = models.CharField(max_length=500, blank=True, help_text="явный URL ")
     named_url = models.CharField(
         max_length=200,
         blank=True,
-        help_text="named url (reverse name). Аргументы не поддерживаются в этой версии."
+        help_text="named url (reverse name). Аргументы не поддерживаются в этой версии "
     )
-    # позиция/порядок — простой способ контролировать порядок
     order = models.PositiveIntegerField(default=0)
 
     class Meta:
@@ -32,15 +30,9 @@ class MenuItem(models.Model):
         return self.title
 
     def get_url(self):
-        """
-        Возвращает итоговый URL: сначала пытается named_url через reverse,
-        затем поле url, иначе '#' — не делает дополнительных запросов.
-        NOTE: Не поддерживаем передачу args/kwargs для именованных урлов в этой реализации.
-        """
         if self.named_url:
             try:
                 return reverse(self.named_url)
             except NoReverseMatch:
-                # если named url не найден — fallback на url
                 pass
         return self.url or "#"

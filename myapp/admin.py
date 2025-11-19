@@ -6,7 +6,7 @@ class MenuItemInline(admin.TabularInline):
     model = MenuItem
     extra = 1
     fields = ("title", "parent", "url", "named_url", "order")
-    autocomplete_fields = ("parent",)  # опционально удобно при больших меню
+    autocomplete_fields = ("parent",)
 
 
 @admin.register(Menu)
