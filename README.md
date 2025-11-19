@@ -9,4 +9,4 @@ python manage.py migrate
 - cоздать суперпользователя: ```python manage.py createsuperuser```
 - запуск: ```python manage.py runserver```
 
-  
+Сервер будет доступен по адресу http://localhost:8000/
